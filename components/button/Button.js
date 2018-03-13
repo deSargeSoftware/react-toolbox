@@ -67,7 +67,7 @@ const factory = (ripple, FontIcon) => {
             if (this.props.onMouseLeave) this.props.onMouseLeave(event);
         };
 
-        render() {
+        render () {
             const { accent, children, className, flat, floating, href, icon,
                 inverse, label, mini, neutral, primary, theme, type, raised, ...others } = this.props;
             const element = href ? 'a' : 'button';

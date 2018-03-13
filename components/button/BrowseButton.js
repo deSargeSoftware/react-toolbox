@@ -70,7 +70,7 @@ const factory = (ripple, FontIcon) => {
             if (this.props.onChange) this.props.onChange(event);
         };
 
-        render() {
+        render () {
             const { accent, children, className, flat, floating, icon,
                 inverse, label, mini, neutral, primary, theme, raised, ...others } = this.props;
             const element = 'label';

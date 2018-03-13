@@ -44,13 +44,13 @@ const factory = (IconButton) => {
 
 		state = { hidden: false, height: 0 };
 
-		componentDidMount() {
+		componentDidMount () {
 			if (this.props.scrollHide) {
 				this.initializeScroll();
 			}
 		}
 
-		componentWillReceiveProps(nextProps) {
+		componentWillReceiveProps (nextProps) {
 			if (!this.props.scrollHide && nextProps.scrollHide) {
 				this.initializeScroll();
 			}
@@ -60,7 +60,7 @@ const factory = (IconButton) => {
 			}
 		}
 
-		componentWillUnmount() {
+		componentWillUnmount () {
 			if (this.props.scrollHide) {
 				this.endScroll();
 			}
@@ -84,7 +84,7 @@ const factory = (IconButton) => {
 			this.curScroll = window.scrollY;
 		};
 
-		render() {
+		render () {
 			const { children, leftIcon, onLeftIconClick, onRightIconClick, rightIcon, theme, title } = this.props;
 			const className = classnames(theme.appBar, {
 				[theme.fixed]: this.props.fixed,

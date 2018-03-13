@@ -75,7 +75,7 @@ const factory = (Chip, Input) => {
             isValueAnObject: false
         };
 
-        componentWillReceiveProps(nextProps) {
+        componentWillReceiveProps (nextProps) {
             if (!this.props.multiple) {
                 this.setState({
                     query: this.query(nextProps.value)
@@ -153,7 +153,7 @@ const factory = (Chip, Input) => {
             this.setState({ active: event.target.id });
         };
 
-        calculateDirection(propsDirection) {
+        calculateDirection (propsDirection) {
             if (propsDirection === 'auto') {
                 const client = ReactDOM.findDOMNode(this.inputNode).getBoundingClientRect();
                 const screen_height = window.innerHeight || document.documentElement.offsetHeight;
@@ -164,7 +164,7 @@ const factory = (Chip, Input) => {
             }
         }
 
-        query(key) {
+        query (key) {
             let query_value = '';
             if (!this.props.multiple && key) {
                 const source_value = this.source().get(`${key}`);
@@ -173,7 +173,7 @@ const factory = (Chip, Input) => {
             return query_value;
         }
 
-        selectOrCreateActiveItem(event) {
+        selectOrCreateActiveItem (event) {
             let target = this.state.active;
             if (!target) {
                 target = this.props.allowCreate
@@ -184,7 +184,7 @@ const factory = (Chip, Input) => {
             this.select(event, target);
         }
 
-        suggestions() {
+        suggestions () {
             let suggest = new Map();
             const rawQuery = this.state.query || (this.props.multiple ? '' : this.props.value);
             const query = (`${rawQuery}`).toLowerCase().trim();
@@ -215,7 +215,7 @@ const factory = (Chip, Input) => {
             return suggest;
         }
 
-        matches(value, query) {
+        matches (value, query) {
             const { suggestionMatch } = this.props;
 
             if (suggestionMatch === 'start') {
@@ -230,7 +230,7 @@ const factory = (Chip, Input) => {
             return false;
         }
 
-        source() {
+        source () {
             const { source: src } = this.props;
             if (src.hasOwnProperty('length')) {
                 return new Map(src.map((item) => Array.isArray(item) ? [...item] : [item, item]));
@@ -239,7 +239,7 @@ const factory = (Chip, Input) => {
             }
         }
 
-        values() {
+        values () {
             let vals = this.props.multiple ? this.props.value : [this.props.value];
 
             if (!vals) vals = [];
@@ -278,7 +278,7 @@ const factory = (Chip, Input) => {
             this.handleChange([newValue, ...values.keys()], event);
         };
 
-        unselect(key, event) {
+        unselect (key, event) {
             if (!this.props.disabled) {
                 const values = this.values(this.props.value);
 
@@ -292,18 +292,18 @@ const factory = (Chip, Input) => {
             }
         }
 
-        isValueAnObject() {
+        isValueAnObject () {
             return !Array.isArray(this.props.value) && typeof this.props.value === 'object';
         }
 
-        mapToObject(map) {
+        mapToObject (map) {
             return Array.from(map).reduce((obj, [k, value]) => {
                 obj[k] = value;
                 return obj;
             }, {});
         }
 
-        renderSelected() {
+        renderSelected () {
             if (this.props.multiple) {
                 const selectedItems = [...this.values()].map(([key, value]) => {
                     return (
@@ -322,7 +322,7 @@ const factory = (Chip, Input) => {
             }
         }
 
-        renderSuggestions() {
+        renderSuggestions () {
             const { theme } = this.props;
             const suggestions = [...this.suggestions()].map(([key, value]) => {
                 const className = classnames(theme.suggestion, { [theme.active]: this.state.active === key });
@@ -349,7 +349,7 @@ const factory = (Chip, Input) => {
             );
         }
 
-        render() {
+        render () {
             const {
                 allowCreate, error, label, source, suggestionMatch, //eslint-disable-line no-unused-vars
                 selectedPosition, keepFocusOnChange, showSuggestionsWhenValueIsSet, showSelectedWhenNotInSource, onQueryChange,   //eslint-disable-line no-unused-vars
